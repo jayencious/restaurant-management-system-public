@@ -22,6 +22,7 @@ export default function Menu() {
                   }}>
 
                 </div>
+                
             </div>
             <div className="mt-2">
                 <FooterComponent />
