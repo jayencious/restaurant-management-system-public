@@ -15,11 +15,11 @@ export default function Home() {
         </div>
         <div className="flex-grow relative"
         style={{
-          backgroundImage: "url('/home_bg.png')",
-          backgroundSize: "cover",
-          backgroundRepeat: "no-repeat",
-          backgroundPosition: "center",
-          borderRadius: "10px",
+          // backgroundImage: "url('/home_bg.png')",
+          // backgroundSize: "cover",
+          // backgroundRepeat: "no-repeat",
+          // backgroundPosition: "center",
+          // borderRadius: "10px",
         }}>
           <div className="flex justify-center items-center space-x-5">
             <CardComponent

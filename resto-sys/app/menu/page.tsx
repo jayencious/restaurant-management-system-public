@@ -14,15 +14,14 @@ export default function Menu() {
                 </div>
                 <div className="flex-grow relative"
                 style={{
-                    backgroundImage: "url('/home_bg.png')",
-                    backgroundSize: "cover",
-                    backgroundRepeat: "no-repeat",
-                    backgroundPosition: "center",
-                    borderRadius: "10px",
+                    // backgroundImage: "url('/home_bg.png')",
+                    // backgroundSize: "cover",
+                    // backgroundRepeat: "no-repeat",
+                    // backgroundPosition: "center",
+                    // borderRadius: "10px",
                   }}>
 
                 </div>
-                
             </div>
             <div className="mt-2">
                 <FooterComponent />
