@@ -8,7 +8,7 @@ import {
     SidebarItems,
     SidebarLogo
 } from "flowbite-react";
-import { LuLayoutDashboard, LuClock } from "react-icons/lu";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { IoBagCheckOutline, IoFastFoodOutline } from "react-icons/io5";
 import { BiFoodMenu } from "react-icons/bi";
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
