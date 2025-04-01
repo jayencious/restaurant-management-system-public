@@ -1,128 +1,122 @@
-// const non_veg_starters = [
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Kashmiri Kebab",
-//     description:
-//       "[Chef Special] Tender, Boneless Chicken Pieces In A Unique Marinate Of Bengal Gram Paste, Grilled In An Earthen Oven & Coated With Egg Yolk.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Chicken Galouti",
-//     description: "Our Melt-In-The-Mouth Galouti Kebab Made Of Minced Chicken.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Tandoori Chicken",
-//     description:
-//       "[Spicy] [Chef Speciall] A Whole Chicken Marinated In Yoghurt And Select Spices, Roasted To Perfection In Clay Oven.",
-//     price: "₹ 609.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Tangdi Kebab",
-//     description:
-//       "Tender Chicken Drumsticks Marinated In Exotic Spices Skewered & Charcoal Grilled.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Shahi Nawabi Murgh Kebab",
-//     description:
-//       "[Highly Recommended] Our Innovative Creation. Tender, Succulent Chicken Drumsticks In A Unique Flavour.",
-//     price: "₹ 849.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Murgh Malai Tikka",
-//     description:
-//       "[Chef Special] Tender, Melt-In-The-Mouth Kebab Made From Boneless Chicken Pieces Flavoured With Herbs, Charcoal Grilled.",
-//     price: "₹ 899.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Honey Chilli Chicken",
-//     description: "",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Murgh Tikka",
-//     description:
-//       "[Spicy] [Chef Special] Succulent Pieces Of Boneless Chicken Marinated In Ginger, Garlic And Aromatic Spices, Roasted In A Tandoor.",
-//     price: "₹ 849.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Murgh Seekh Kebab",
-//     description:
-//       "Seekhs Of Chicken Mince Adorned With Dry Fruits To Add The True Shahi Flavour.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Chicken 65",
-//     description:
-//       "[Spicy] Small Succulent Pieces Of Diced Chicken Marinated In Hot Hyderabadi Spices And Pan-Fried.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken",
-//     name: "Chicken Neza Kebab",
-//     description:
-//       "[Spicy] Tantalising Chicken Legs Marinated In Aromatic Spices Over A Charcoal Grill [Chef Special]",
-//     price: "₹ 899.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Chicken & Mutton",
-//     name: "Gulati Special Murgh Aur Gosht Ki Miloni Seekh",
-//     description:
-//       "The Best Of Both Worlds. Our New & Unique Miloni Seekh Brings Together The Best Of Both Minced Meat & Minced Chicken.",
-//     price: "₹ 799.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Mutton",
-//     name: "Mutton Kastoori Kebab [ Mutton Seekh Kebab ]",
-//     description:
-//       "Grilled Skewers Of Fenugreek Spiced Minced Meat With Garlic, Finished With Almonds.",
-//     price: "₹ 849.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Mutton",
-//     name: "Mutton Kakori Kebab",
-//     description:
-//       "A Rared Minced Mutton Delicacy Grilled With An Exclusive Marinade.",
-//     price: "₹ 899.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Mutton",
-//     name: "Mutton Galouti Kebab",
-//     description:
-//       "[ Chef Special ] A Mouth-Melting Kebab Shallow Fried To Perfectiom.",
-//     price: "₹ 899.00",
-//   },
-//   {
-//     type: "non_veg",
-//     ingredient: "Mutton",
-//     name: "Mutton Burrah Akbari",
-//     description:
-//       "(Spicy) Mutton Chops, Marinated Overnight With Yoghurt Cheese & Malt Vinegar, Spiced With Royal Cumin And Pepper, Roasted In The Tandoor.",
-//     price: "₹ 999.00",
-//   }
-// ];
+const non_veg_starters = [
+  {
+    type: "nonveg",
+    name: "Chicken Tikka",
+    description: "Grilled boneless chicken marinated in Indian spices.",
+    price: "₹480",
+  },
+  {
+    type: "nonveg",
+    name: "Mutton Seekh Kebab",
+    description: "Juicy minced mutton skewers cooked in a tandoor.",
+    price: "₹600",
+  },
+  {
+    type: "nonveg",
+    name: "Prawn Tempura",
+    description: "Crispy Japanese-style battered prawns.",
+    price: "₹750",
+  },
+  {
+    type: "nonveg",
+    name: "Chicken Wings",
+    description: "Deep-fried chicken wings tossed in spicy sauce.",
+    price: "₹400",
+  },
+  {
+    type: "nonveg",
+    name: "Fish Fingers",
+    description: "Crispy fried fish fillets served with tartar sauce.",
+    price: "₹520",
+  },
+  {
+    type: "nonveg",
+    name: "Tandoori Prawns",
+    description: "Chargrilled prawns marinated in Indian spices.",
+    price: "₹800",
+  },
+  {
+    type: "nonveg",
+    name: "Chicken Lollipop",
+    description: "Spicy and crispy Indo-Chinese style chicken drumettes.",
+    price: "₹450",
+  },
+  {
+    type: "nonveg",
+    name: "Lemon Butter Garlic Fish",
+    description: "Pan-seared fish with a tangy butter garlic sauce.",
+    price: "₹650",
+  },
+  {
+    type: "nonveg",
+    name: "Chicken Tenders",
+    description: "Crispy fried chicken tenders.",
+    price: "₹500",
+  },
+  {
+    type: "nonveg",
+    name: "BBQ Chicken Wings",
+    description: "Grilled chicken wings with smoky BBQ sauce.",
+    price: "₹550",
+  },
+  {
+    type: "nonveg",
+    name: "Shrimp Cocktail",
+    description: "Chilled prawns served with tangy cocktail sauce.",
+    price: "₹900",
+  },
+  {
+    type: "nonveg",
+    name: "Chicken Quesadillas",
+    description: "Grilled tortillas filled with cheesy spiced chicken.",
+    price: "₹700",
+  },
+  {
+    type: "nonveg",
+    name: "Mexican Chicken Nachos",
+    description: "Loaded nachos with spicy chicken and melted cheese.",
+    price: "₹650",
+  },
+  {
+    type: "nonveg",
+    name: "Mutton Galouti Kebab",
+    description: "Soft, melt-in-the-mouth Mughlai mutton kebabs.",
+    price: "₹850",
+  },
+  {
+    type: "nonveg",
+    name: "Fish Tacos",
+    description: "Crispy battered fish in soft tacos with salsa.",
+    price: "₹600",
+  },
+  {
+    type: "nonveg",
+    name: "Teriyaki Chicken Skewers",
+    description: "Grilled chicken skewers glazed with teriyaki sauce.",
+    price: "₹550",
+  },
+  {
+    type: "nonveg",
+    name: "Dynamite Prawns",
+    description: "Crispy prawns tossed in creamy spicy sauce.",
+    price: "₹950",
+  },
+  {
+    type: "nonveg",
+    name: "Crispy Chicken Popcorn",
+    description: "Bite-sized crispy chicken with a flavorful seasoning.",
+    price: "₹350",
+  },
+  {
+    type: "nonveg",
+    name: "Grilled Lamb Chops",
+    description: "Juicy grilled lamb chops with aromatic herbs.",
+    price: "₹1000",
+  },
+  {
+    type: "nonveg",
+    name: "Chicken Satay",
+    description: "Thai-style skewered chicken served with peanut sauce.",
+    price: "₹480",
+  },
+];

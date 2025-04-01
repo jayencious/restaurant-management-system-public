@@ -1,57 +1,49 @@
-import { NavBar } from "@/app/utils/navbar";
-import { SideBar } from "./utils/sidebar";
-import { FooterComponent } from "./utils/footer";
-import { CardComponent } from "./utils/card";
+import {
+  Button,
+  Navbar,
+  NavbarBrand,
+  NavbarCollapse,
+  NavbarLink,
+  NavbarToggle,
+} from "flowbite-react";
+import Image from "next/image";
+import LoginComponent from "./utils/loginPage";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <div className="mb-2">
-      <NavBar />
-      </div>
-      <div className="flex flex-grow px-2">
-        <div className="flex items-center mr-2">
-          <SideBar />
-        </div>
-        <div className="flex-grow relative"
-        style={{
-          // backgroundImage: "url('/home_bg.png')",
-          // backgroundSize: "cover",
-          // backgroundRepeat: "no-repeat",
-          // backgroundPosition: "center",
-          // borderRadius: "10px",
-        }}>
-          <div className="flex justify-center items-center space-x-5">
-            <CardComponent
-              imgSrc='/menu_card.png'
-              imgAlt='View Our Menu'
-              imgWidth={350}
-              imgHeight={400}
-              cardText='Menu'
-              buttonPath="/menu"
-            />
-            <CardComponent
-                imgSrc='/my_orders.png'
-                imgAlt='View Orders'
-                imgWidth={350}
-                imgHeight={400}
-                cardText='Orders'
-                buttonPath="/orders"
-            />
-            <CardComponent
-                imgSrc='/reservation.png'
-                imgAlt='Table Reservation'
-                imgWidth={350}
-                imgHeight={400}
-                cardText='Book A Table'
-                buttonPath="/reservation"
-            />
-          </div>
-        </div>
-      </div>
-      <div className="mt-2">
-        <FooterComponent />
-      </div>
+    <div
+        className="home-div"
+    >
+        {/* <Navbar fluid rounded
+            style={{
+                backgroundColor: 'inherit',
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                padding: '1rem 2rem',
+            }}
+        >
+            <NavbarBrand
+                href="/"
+                style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '15px'
+                }}
+            >
+                <Image
+                    src='/taste_of_the_world_logo.jpg'
+                    alt="Taste of the World"
+                    width={85}
+                    height={100}
+                    className="mr-5 h-12 sm:h-20"
+                />
+                <span className="self-center whitespace-nowrap text-2xl sm:text-4xl font-bold dark:text-white">
+                    Taste of the World
+                </span>
+            </NavbarBrand>
+        </Navbar> */}
+        <LoginComponent />
     </div>
   );
 }

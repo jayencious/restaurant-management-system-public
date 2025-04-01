@@ -8,7 +8,7 @@ import {
     SidebarItems,
     SidebarLogo
 } from "flowbite-react";
-import { LuLayoutDashboard } from "react-icons/lu";
+import { LuLayoutDashboard, LuClock } from "react-icons/lu";
 import { IoBagCheckOutline, IoFastFoodOutline } from "react-icons/io5";
 import { BiFoodMenu } from "react-icons/bi";
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
@@ -32,9 +32,9 @@ export function SideBar() {
             <SidebarItems>
                 <SidebarItemGroup>
                     <SidebarItem
-                        href="/dashboard"
+                        href="/"
                         icon={LuLayoutDashboard}
-                        active={(pathname === '/dashboard')}
+                        active={(pathname === '/')}
                     >
                         Dashboard
                     </SidebarItem>
@@ -103,6 +103,11 @@ export function SideBar() {
                             href="#"
                         >
                             Sweet Dishes
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#"
+                        >
+                            Desserts
                         </SidebarItem>
                         <SidebarItem
                             href="#"
