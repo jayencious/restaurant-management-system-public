@@ -35,7 +35,7 @@ export function CardComponent({
             </div>
             <Button
                 href={buttonPath}
-                className='text-1xl text-center font-semibold text-gray-900  dark:text-white'
+                className='text-1xl text-center font-semibold text-gray-900 dark:text-white'
                 color='yellow'
             >
                 {cardText} <svg

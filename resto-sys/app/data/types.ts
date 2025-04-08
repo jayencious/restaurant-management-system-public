@@ -1,4 +1,8 @@
-interface UserData {
+// This file contains the type definitions for our data.
+// It is used to describe the structure of data.
+// It is also used to specify what data type each property should accept.
+
+export type UserData = {
     id?: number;
     name: string;
     email: string;
@@ -6,7 +10,7 @@ interface UserData {
     created_at?: Date;
 };
 
-interface vegStartersData {
+export type vegStartersData = {
     id?: number;
     type: string;
     name: string;
@@ -14,7 +18,7 @@ interface vegStartersData {
     price: number;
 };
 
-interface nonVegStartersData {
+export type nonVegStartersData = {
     id?: number;
     type: string;
     name: string;
@@ -22,7 +26,7 @@ interface nonVegStartersData {
     price: number;
 };
 
-interface vegPlattersData {
+export type vegPlattersData = {
     id?: number;
     type: string;
     name: string;
@@ -30,7 +34,7 @@ interface vegPlattersData {
     price: number;
 };
 
-interface nonVegPlattersData {
+export type nonVegPlattersData = {
     id?: number;
     type: string;
     name: string;
@@ -38,7 +42,7 @@ interface nonVegPlattersData {
     price: number;
 };
 
-interface vegMainCourseData {
+export type vegMainCourseData = {
     id?: number;
     type: string;
     name: string;
@@ -46,7 +50,7 @@ interface vegMainCourseData {
     price: number;
 };
 
-interface nonVegMainCourseData {
+export type nonVegMainCourseData = {
     id?: number;
     type: string;
     name: string;
@@ -54,7 +58,7 @@ interface nonVegMainCourseData {
     price: number;
 };
 
-interface vegBiryaniData {
+export type vegBiryaniData = {
     id?: number;
     type: string;
     name: string;
@@ -62,7 +66,7 @@ interface vegBiryaniData {
     price: number;
 };
 
-interface nonVegBiryaniData {
+export type nonVegBiryaniData = {
     id?: number;
     type: string;
     name: string;
@@ -70,7 +74,7 @@ interface nonVegBiryaniData {
     price: number;
 };
 
-interface vegRiceData {
+export type vegRiceData = {
     id?: number;
     type: string;
     name: string;
@@ -78,7 +82,7 @@ interface vegRiceData {
     price: number;
 };
 
-interface nonVegRiceData {
+export type nonVegRiceData = {
     id?: number;
     type: string;
     name: string;
@@ -86,64 +90,44 @@ interface nonVegRiceData {
     price: number;
 };
 
-interface rotisAndBreadsData {
+export type rotisAndBreadsData = {
     id?: number;
     name: string;
     description: string;
     price: number;
 };
 
-interface chaatsData {
+export type chaatsData = {
     id?: number;
     name: string;
     description: string;
     price: number;
 };
 
-interface saladsData {
+export type saladsData = {
     id?: number;
     name: string;
     description: string;
     price: number;
 };
 
-interface raitasData {
+export type raitasData = {
     id?: number;
     name: string;
     description: string;
     price: number;
 };
 
-interface sweetDishesData {
+export type sweetDishesData = {
     id?: number;
     name: string;
     description: string;
     price: number;
 };
 
-interface beveragesData {
+export type beveragesData = {
     id?: number;
     name: string;
     description: string;
     price: number;
-};
-
-export type {
-    UserData,
-    vegStartersData,
-    nonVegStartersData,
-    vegPlattersData,
-    nonVegPlattersData,
-    vegMainCourseData,
-    nonVegMainCourseData,
-    vegBiryaniData,
-    nonVegBiryaniData,
-    vegRiceData,
-    nonVegRiceData,
-    rotisAndBreadsData,
-    chaatsData,
-    saladsData,
-    raitasData,
-    sweetDishesData,
-    beveragesData
 };

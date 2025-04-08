@@ -9,20 +9,8 @@ import {
 import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import Link from "next/link";
-// import { useState } from 'react';
-// import { signIn, useSession } from 'next-auth/react';
-// import { useRouter } from 'next/navigation';
-// import { useEffect } from 'react';
 
 export default function LoginComponent() {
-    // const { data: session } = useSession();
-    // const router = useRouter();
-
-    // useEffect(() => {
-    //     if (session) {
-    //         router.push('/dashboard');
-    //     }
-    // }, [session]);
 
     return (
         <div className="flex flex-col justify-center px-6 py-12 sm:mx-auto sm:w-full sm:max-w-md bg-green-900 rounded-2xl shadow-lg">
@@ -54,7 +42,7 @@ export default function LoginComponent() {
                                 type="email"
                                 id="email"
                                 name="email"
-                                placeholder='johndoe123@gmail.com'
+                                placeholder='Email'
                                 required
                                 autoComplete="email"
                                 className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-00 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"

@@ -1,11 +1,11 @@
+"use client";
+
 import { NavBar } from "@/app/utils/navbar";
 import { SideBar } from "@/app/utils/sidebar";
 import { FooterComponent } from "@/app/utils/footer";
 import { CardComponent } from "@/app/utils/card";
-import createUser from '@/app/lib/definitions';
 
 export default function Dashboard() {
-  createUser();
   return (
     <div className="flex flex-col min-h-screen">
       <div className="mb-2">
@@ -16,13 +16,12 @@ export default function Dashboard() {
           <SideBar />
         </div>
         <div className="flex-grow relative"
-        style={{
           // backgroundImage: "url('/home_bg.png')",
           // backgroundSize: "cover",
           // backgroundRepeat: "no-repeat",
           // backgroundPosition: "center",
           // borderRadius: "10px",
-        }}>
+          >
           <div className="flex justify-center items-center space-x-5">
             <CardComponent
               imgSrc='/menu_card.png'
@@ -30,7 +29,7 @@ export default function Dashboard() {
               imgWidth={350}
               imgHeight={400}
               cardText='Menu'
-              buttonPath="/menu"
+              buttonPath="/user/menu"
             />
             <CardComponent
                 imgSrc='/my_orders.png'
@@ -38,7 +37,7 @@ export default function Dashboard() {
                 imgWidth={350}
                 imgHeight={400}
                 cardText='Orders'
-                buttonPath="/orders"
+                buttonPath="/user/orders"
             />
             <CardComponent
                 imgSrc='/reservation.png'
@@ -46,7 +45,7 @@ export default function Dashboard() {
                 imgWidth={350}
                 imgHeight={400}
                 cardText='Book A Table'
-                buttonPath="/reservation"
+                buttonPath="/user/reservation"
             />
           </div>
         </div>

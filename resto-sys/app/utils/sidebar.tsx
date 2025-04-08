@@ -32,18 +32,11 @@ export function SideBar() {
             <SidebarItems>
                 <SidebarItemGroup>
                     <SidebarItem
-                        href="/dashboard"
+                        href="/user/dashboard"
                         icon={LuLayoutDashboard}
-                        active={(pathname === '/dashboard')}
+                        active={(pathname === '/user/dashboard')}
                     >
                         Dashboard
-                    </SidebarItem>
-                    <SidebarItem
-                        href="orders"
-                        icon={IoFastFoodOutline}
-                        active={(pathname === '/orders')}
-                    >
-                        Orders
                     </SidebarItem>
                     <SidebarCollapse
                         icon={BiFoodMenu}
@@ -55,72 +48,109 @@ export function SideBar() {
                         }}
                     >
                         <SidebarItem
-                            href="#"
+                            href="#veg_starters"
                         >
                             Veg Starters
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#non_veg_starters"
                         >
                             Non Veg Starters
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#veg_platters"
                         >
                             Veg Platters
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#non_veg_platters"
                         >
                             Non Veg Platters
                         </SidebarItem>
                         <SidebarItem 
-                            href="#"
+                            href="#veg_main_course"
                         >
                             Veg Main Course
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#non_veg_main_course"
                         >
                             Non Veg Main Course
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#veg_biryani"
                         >
-                            Biryani and Rice
+                            Veg Biryani
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#non_veg_biryani"
+                        >
+                            Non Veg Biryani
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#veg_rice"
+                        >
+                            Veg Rice
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#non_veg_rice"
+                        >
+                            Non Veg Rice
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#rotis_and_breads"
                         >
                             Rotis and Breads
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#chaats"
                         >
-                            Chaats, Salad and Raita
+                            Chaats
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#salads"
+                        >
+                            Salads
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#raitas"
+                        >
+                            Raitas
+                        </SidebarItem>
+                        <SidebarItem
+                            href="#sweet_dishes"
                         >
                             Sweet Dishes
                         </SidebarItem>
                         <SidebarItem
-                            href="#"
+                            href="#beverages"
                         >
                             Beverages
                         </SidebarItem>
                     </SidebarCollapse>
-                    {/*<SidebarItem href="menu" icon={BiFoodMenu}>Menu</SidebarItem>*/}
+                    <SidebarItem
+                        href="/user/orders"
+                        icon={IoFastFoodOutline}
+                        active={(pathname === '/user/orders')}
+                    >
+                        Orders
+                    </SidebarItem>
+                    {/* <SidebarItem
+                        href="/user/reservation"
+                        active={(pathname === '/users/resevation')}
+                    >
+                        Reservation
+                    </SidebarItem> */}
                 </SidebarItemGroup>
                 <SidebarItemGroup>
                     <SidebarItem
-                        href="#"
+                        href="tel:121006548"
                         icon={BsTelephone}
                     >
                         121-006-548
                     </SidebarItem>
                     <SidebarItem
-                        href="#"
+                        href="/user/checkout"
                         icon={IoBagCheckOutline}
                     >
                         Place Order
