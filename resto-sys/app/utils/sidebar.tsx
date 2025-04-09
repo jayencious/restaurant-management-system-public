@@ -18,7 +18,7 @@ import { usePathname } from "next/navigation";
 
 export function SideBar() {
     const pathname = usePathname();
-    
+
     return (
         <Sidebar>
             <SidebarLogo
@@ -42,91 +42,100 @@ export function SideBar() {
                         icon={BiFoodMenu}
                         label="Menu"
                         renderChevronIcon={(theme, open) => {
-                            const IconComponent = open ? HiOutlineMinusSm : HiOutlinePlusSm;
+                            const IconComponent = open
+                                ? HiOutlineMinusSm
+                                : HiOutlinePlusSm;
 
-                            return <IconComponent aria-hidden className={twMerge(theme.label.icon.open[open ? "on" : "off"])} />
+                            return <IconComponent
+                                aria-hidden
+                                className={
+                                    twMerge(theme.label.icon.open[open ? "on" : "off"])
+                                }
+                            />
                         }}
                     >
-                        <SidebarItem
-                            href="#veg_starters"
-                        >
-                            Veg Starters
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#non_veg_starters"
-                        >
-                            Non Veg Starters
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#veg_platters"
-                        >
-                            Veg Platters
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#non_veg_platters"
-                        >
-                            Non Veg Platters
-                        </SidebarItem>
-                        <SidebarItem 
-                            href="#veg_main_course"
-                        >
-                            Veg Main Course
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#non_veg_main_course"
-                        >
-                            Non Veg Main Course
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#veg_biryani"
-                        >
-                            Veg Biryani
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#non_veg_biryani"
-                        >
-                            Non Veg Biryani
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#veg_rice"
-                        >
-                            Veg Rice
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#non_veg_rice"
-                        >
-                            Non Veg Rice
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#rotis_and_breads"
-                        >
-                            Rotis and Breads
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#chaats"
-                        >
-                            Chaats
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#salads"
-                        >
-                            Salads
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#raitas"
-                        >
-                            Raitas
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#sweet_dishes"
-                        >
-                            Sweet Dishes
-                        </SidebarItem>
-                        <SidebarItem
-                            href="#beverages"
-                        >
-                            Beverages
-                        </SidebarItem>
+                        <div className="max-h-[150px] overflow-y-auto pr-2 scrollbar-hide">
+                            <SidebarItem
+                                href="#veg_starters"
+                            >
+                                Veg Starters
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#non_veg_starters"
+                            >
+                                Non Veg Starters
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#veg_platters"
+                            >
+                                Veg Platters
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#non_veg_platters"
+                            >
+                                Non Veg Platters
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#veg_main_course"
+                            >
+                                Veg Main Course
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#non_veg_main_course"
+                            >
+                                Non Veg Main Course
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#veg_biryani"
+                            >
+                                Veg Biryani
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#non_veg_biryani"
+                            >
+                                Non Veg Biryani
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#veg_rice"
+                            >
+                                Veg Rice
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#non_veg_rice"
+                            >
+                                Non Veg Rice
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#rotis_and_breads"
+                            >
+                                Rotis and Breads
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#chaats"
+                            >
+                                Chaats
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#salads"
+                            >
+                                Salads
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#raitas"
+                            >
+                                Raitas
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#sweet_dishes"
+                            >
+                                Sweet Dishes
+                            </SidebarItem>
+                            <SidebarItem
+                                href="#beverages"
+                            >
+                                Beverages
+                            </SidebarItem>
+                        </div>
                     </SidebarCollapse>
                     <SidebarItem
                         href="/user/orders"

@@ -26,8 +26,8 @@ export default function Dashboard() {
             <CardComponent
               imgSrc='/menu_card.png'
               imgAlt='View Our Menu'
-              imgWidth={350}
-              imgHeight={400}
+              imgWidth={250}
+              imgHeight={300}
               cardText='Menu'
               buttonPath="/user/menu"
             />
@@ -35,7 +35,7 @@ export default function Dashboard() {
                 imgSrc='/my_orders.png'
                 imgAlt='View Orders'
                 imgWidth={350}
-                imgHeight={400}
+                imgHeight={450}
                 cardText='Orders'
                 buttonPath="/user/orders"
             />
