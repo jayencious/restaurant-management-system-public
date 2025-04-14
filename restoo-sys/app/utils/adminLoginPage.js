@@ -1,0 +1,96 @@
+"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+
+function AdminLoginComponent() {
+    return (
+        <div
+            className="flex flex-col justify-center px-6 py-12 sm:mx-auto sm:w-full sm:max-w-md bg-red-900 rounded-2xl shadow-lg"
+        >
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+                <Image
+                    src='/taste_of_the_world_logo.jpg'
+                    alt='Taste Of The World'
+                    width={85}
+                    height={100}
+                    className='mx-auto'
+                />
+                <h2
+                    className="mt-10 text-center text-2xl font-bold tracking-tight text-gray-100"
+                >
+                    Taste Of The World
+                </h2>
+                <h3 className="text-center text-1xl font-semibold tracking-tight text-blue-400 underline">
+                    Admin Panel
+                </h3>
+            </div>
+            <div
+                className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm"
+            >
+                <form
+                    className="space-y-6"
+                >
+                    <div>
+                        <label
+                            htmlFor="email"
+                            className="block text-sm/6 font-medium text-gray-100"
+                        >
+                            Email address
+                        </label>
+                        <div className="mt-2">
+                            <input
+                                type="email"
+                                id="email"
+                                name="email"
+                                placeholder='Email'
+                                required
+                                autoComplete="email"
+                                className="block w-full rounded-md bg-white px-3 py-1.5 text-base text-gray-00 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="flex items-center justify-between">
+                            <label
+                                htmlFor="password"
+                                className="block text-sm/6 font-medium text-gray-100"
+                            >
+                                Password
+                            </label>
+                            <div className="text-sm">
+                                <Link
+                                    href='#'
+                                    className="font-semibold text-red-700 hover:text-gray-900"
+                                >
+                                    Forgot password?
+                                </Link>
+                            </div>
+                        </div>
+                        <div className="mt-2">
+                            <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                placeholder='Password'
+                                required
+                                autoComplete="current-password"
+                                className="block w-full rounded-md bg-white px-3 py-2 text-base text-gray-900 border border-gray-300 placeholder-gray-400 focus:ring-2 focus:ring-indigo-600 focus:border-indigo-600"
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            className="w-full px-4 py-2 font-semibold bg-blue-600 text-white text-lg rounded-md shadow-md hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 focus:outline-none transition-all ease-in-out duration-300 mb-3"
+                        >
+                            Sign In
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    );
+}
+
+export default AdminLoginComponent;
