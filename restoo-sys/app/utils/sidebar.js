@@ -9,7 +9,7 @@ import {
     SidebarLogo
 } from "flowbite-react";
 import { LuLayoutDashboard } from "react-icons/lu";
-import { IoBagCheckOutline, IoFastFoodOutline } from "react-icons/io5";
+import { IoBagCheckOutline, IoFastFoodOutline, IoCartOutline } from "react-icons/io5";
 import { BiFoodMenu } from "react-icons/bi";
 import { HiOutlineMinusSm, HiOutlinePlusSm } from "react-icons/hi";
 import { twMerge } from "tailwind-merge";
@@ -143,6 +143,13 @@ function SideBar() {
                         active={(pathname === '/userLogin/orders')}
                     >
                         Orders
+                    </SidebarItem>
+                    <SidebarItem
+                        href="/userLogin/orderCart"
+                        icon={IoCartOutline}
+                        active={(pathname === '/userLogin/orderCart')}
+                    >
+                        Cart
                     </SidebarItem>
                     {/* <SidebarItem
                         href="/user/reservation"

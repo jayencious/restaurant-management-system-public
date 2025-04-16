@@ -23,6 +23,7 @@ import {
 } from '../../data/menuData/menu';
 import MenuItems from "../../utils/menuItems";
 import SidebarToggle from "../../utils/sidebarToggle";
+import { Suspense } from "react";
 
 const playfair = Playfair({
     subsets: ["latin"],
@@ -31,6 +32,42 @@ const playfair = Playfair({
 });
 
 async function UserMenu() {
+    const [
+        vegStarters,
+        nonVegStarters,
+        vegPlatters,
+        nonVegPlatters,
+        vegMainCourse,
+        nonVegMainCourse,
+        vegBiryani,
+        nonVegBiryani,
+        vegRice,
+        nonVegRice,
+        rotisAndBreads,
+        chaats,
+        salads,
+        raitas,
+        sweetDishes,
+        beverages
+    ] = await Promise.all([
+        getVegStarters(),
+        getNonVegStarters(),
+        getVegPlatters(),
+        getNonVegPlatters(),
+        getVegMainCourse(),
+        getNonVegMainCourse(),
+        getVegBiryani(),
+        getNonVegBiryani(),
+        getVegRice(),
+        getNonVegRice(),
+        getRotisAndBreads(),
+        getChaats(),
+        getSalads(),
+        getRaitas(),
+        getSweetDishes(),
+        getBeverages(),
+    ]);
+
     return (
         <div
             className="flex flex-col min-h-screen"
@@ -45,6 +82,11 @@ async function UserMenu() {
             >
                 <SidebarToggle />
                 <div
+                    className="hidden md:flex md:w-60 md:mr-2 bg-white z-20"
+                >
+                    <SideBar />
+                </div>
+                <div
                     className="flex-grow relative overflow-y-auto scrollbar-hide"
                     style={{
                         // backgroundImage: "url('/home_bg.png')",
@@ -57,102 +99,106 @@ async function UserMenu() {
                         margin: "10px",
                     }}
                 >
-                    <MenuItems
-                        category_name={'veg_starters'}
-                        title={'Veg Starters'}
-                        getFunctionName={(await getVegStarters())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'non_veg_starters'}
-                        title={'Non Veg Starters'}
-                        getFunctionName={(await getNonVegStarters())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'veg_platters'}
-                        title={'Veg Platters'}
-                        getFunctionName={(await getVegPlatters())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'non_veg_platters'}
-                        title={'Non Veg Platters'}
-                        getFunctionName={(await getNonVegPlatters())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'veg_main_course'}
-                        title={'Veg Main Course'}
-                        getFunctionName={(await getVegMainCourse())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'non_veg_main_course'}
-                        title={'Non Veg Main Course'}
-                        getFunctionName={(await getNonVegMainCourse())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'veg_biryani'}
-                        title={'Veg Biryani'}
-                        getFunctionName={(await getVegBiryani())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'non_veg_biryani'}
-                        title={'Non Veg Biryani'}
-                        getFunctionName={(await getNonVegBiryani())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'veg_rice'}
-                        title={'Veg Rice'}
-                        getFunctionName={(await getVegRice())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'non_veg_rice'}
-                        title={'Non Veg Rice'}
-                        getFunctionName={(await getNonVegRice())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'rotis_and_breads'}
-                        title={'Rotis And Breads'}
-                        getFunctionName={(await getRotisAndBreads())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'chaats'}
-                        title={'Chaats'}
-                        getFunctionName={(await getChaats())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'salads'}
-                        title={'Salads'}
-                        getFunctionName={(await getSalads())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'raitas'}
-                        title={'Raitas'}
-                        getFunctionName={(await getRaitas())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'sweet_dishes'}
-                        title={'Sweet Dishes'}
-                        getFunctionName={(await getSweetDishes())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
-                    <MenuItems
-                        category_name={'beverages'}
-                        title={'Beverages'}
-                        getFunctionName={(await getBeverages())}
-                        rupeeSymbol={rupeeSymbol}
-                    />
+                    <Suspense
+                        fallback={<p>Loading data...</p>}
+                    >
+                        <MenuItems
+                            category_name={'veg_starters'}
+                            title={'Veg Starters'}
+                            getFunctionName={vegStarters}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'non_veg_starters'}
+                            title={'Non Veg Starters'}
+                            getFunctionName={nonVegStarters}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'veg_platters'}
+                            title={'Veg Platters'}
+                            getFunctionName={vegPlatters}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'non_veg_platters'}
+                            title={'Non Veg Platters'}
+                            getFunctionName={nonVegPlatters}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'veg_main_course'}
+                            title={'Veg Main Course'}
+                            getFunctionName={vegMainCourse}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'non_veg_main_course'}
+                            title={'Non Veg Main Course'}
+                            getFunctionName={nonVegMainCourse}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'veg_biryani'}
+                            title={'Veg Biryani'}
+                            getFunctionName={vegBiryani}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'non_veg_biryani'}
+                            title={'Non Veg Biryani'}
+                            getFunctionName={nonVegBiryani}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'veg_rice'}
+                            title={'Veg Rice'}
+                            getFunctionName={vegRice}
+                         rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'non_veg_rice'}
+                            title={'Non Veg Rice'}
+                            getFunctionName={nonVegRice}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'rotis_and_breads'}
+                            title={'Rotis And Breads'}
+                            getFunctionName={rotisAndBreads}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'chaats'}
+                            title={'Chaats'}
+                            getFunctionName={chaats}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'salads'}
+                            title={'Salads'}
+                            getFunctionName={salads}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'raitas'}
+                            title={'Raitas'}
+                            getFunctionName={raitas}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'sweet_dishes'}
+                            title={'Sweet Dishes'}
+                            getFunctionName={sweetDishes}
+                            rupeeSymbol={rupeeSymbol}
+                        />
+                        <MenuItems
+                            category_name={'beverages'}
+                            title={'Beverages'}
+                            getFunctionName={beverages}
+                         rupeeSymbol={rupeeSymbol}
+                        />
+                    </Suspense>
                 </div>
             </div>
             <div

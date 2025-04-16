@@ -10,15 +10,17 @@ function SidebarToggle() {
     const [showSidebar, setShowSidebar] = useState(false);
 
     return (
-        <>
+        <div
+            className="md:hidden"
+        >
             <Button
                 size="xs"
                 color='dark'
                 className={`fixed z-30 p-2 shadow-md border border-gray-300 bg-gray-200 rounded-full transition-all duration-300
-                        ${showSidebar
-                        ? 'top-1/2 left-[15rem] -translate-y-1/2 md:left-[14.5rem]'
+                    ${showSidebar
+                        ? 'top-1/2 left-[15rem] -translate-y-1/2'
                         : 'top-1/2 left-0 -translate-y-1/2 rounded-r-full'}
-                        `}
+                    `}
                 onClick={() => setShowSidebar(!showSidebar)}
             >
                 {showSidebar ? (
@@ -31,14 +33,14 @@ function SidebarToggle() {
                     />
                 )}
             </Button>
-            <div
-                className={`bg-white z-20 transition-all duration-300 ease-in-out ${showSidebar ? "absolute top-0 left-0 w-48 h-full md:static md:flex"
-                        : "hidden md:flex"
-                    } md:w-60 md:mr-2`} // "flex items-center mr-2"
-            >
-                <SideBar />
+            {showSidebar && (
+                <div
+                    className='fixed top-0 left-0 w-60 h-full bg-white shadow-lg z-20' // "flex items-center mr-2"
+                >
+                    <SideBar />
             </div>
-        </>
+            )}
+        </div>
     );
 }
 
