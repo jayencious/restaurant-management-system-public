@@ -13,10 +13,9 @@ function CardComponent({
 }) {
     return (
         <Card
-            className='max-w-sm flex flex-col items-center justify-center border-none flex-1'
+            className='!bg-transparent max-w-sm flex flex-col items-center justify-center border-none flex-1'
             style={{
-                backgroundColor: 'rgba(0, 0, 0, 0.1) !important',
-                padding: '10px'
+                padding: '10px',
             }}
         >
             <div className="flex justify-center">

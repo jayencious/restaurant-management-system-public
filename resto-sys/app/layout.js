@@ -1,5 +1,6 @@
 import { ThemeModeScript } from "flowbite-react";
 import "./globals.css";
+import Providers from './providers';
 
 export const metadata = {
   title: {
@@ -18,7 +19,9 @@ export default function RootLayout({
         <ThemeModeScript />
       </head>
       <body>
-        {children}
+        <Providers>
+          {children}
+        </Providers>
       </body>
     </html>
   );

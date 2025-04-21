@@ -21,9 +21,11 @@ import {
     getSweetDishes,
     getBeverages
 } from '../../data/menuData/menu';
-import MenuItems from "../../utils/menuItems";
 import SidebarToggle from "../../utils/sidebarToggle";
 import { Suspense } from "react";
+import { auth } from '../../auth';
+import { getCartItems } from '../../actions/cart';
+import CartButton from '../../utils/cartButton';
 
 const playfair = Playfair({
     subsets: ["latin"],
@@ -68,6 +70,13 @@ async function UserMenu() {
         getBeverages(),
     ]);
 
+    const session = await auth();
+    const userId = session?.user?.id;
+    const userName = session?.user?.name;
+    const userEmail = session?.user?.email;
+
+    const cartItems = userId ? await getCartItems() : [];
+
     return (
         <div
             className="flex flex-col min-h-screen"
@@ -75,7 +84,10 @@ async function UserMenu() {
             <div
                 className="mb-2"
             >
-                <NavBar />
+                <NavBar
+                    userName={userName}
+                    userEmail={userEmail}
+                />
             </div>
             <div
                 className="flex flex-grow flex-row px-2 relative"
@@ -102,102 +114,934 @@ async function UserMenu() {
                     <Suspense
                         fallback={<p>Loading data...</p>}
                     >
-                        <MenuItems
-                            category_name={'veg_starters'}
-                            title={'Veg Starters'}
-                            getFunctionName={vegStarters}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'non_veg_starters'}
-                            title={'Non Veg Starters'}
-                            getFunctionName={nonVegStarters}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'veg_platters'}
-                            title={'Veg Platters'}
-                            getFunctionName={vegPlatters}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'non_veg_platters'}
-                            title={'Non Veg Platters'}
-                            getFunctionName={nonVegPlatters}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'veg_main_course'}
-                            title={'Veg Main Course'}
-                            getFunctionName={vegMainCourse}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'non_veg_main_course'}
-                            title={'Non Veg Main Course'}
-                            getFunctionName={nonVegMainCourse}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'veg_biryani'}
-                            title={'Veg Biryani'}
-                            getFunctionName={vegBiryani}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'non_veg_biryani'}
-                            title={'Non Veg Biryani'}
-                            getFunctionName={nonVegBiryani}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'veg_rice'}
-                            title={'Veg Rice'}
-                            getFunctionName={vegRice}
-                         rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'non_veg_rice'}
-                            title={'Non Veg Rice'}
-                            getFunctionName={nonVegRice}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'rotis_and_breads'}
-                            title={'Rotis And Breads'}
-                            getFunctionName={rotisAndBreads}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'chaats'}
-                            title={'Chaats'}
-                            getFunctionName={chaats}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'salads'}
-                            title={'Salads'}
-                            getFunctionName={salads}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'raitas'}
-                            title={'Raitas'}
-                            getFunctionName={raitas}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'sweet_dishes'}
-                            title={'Sweet Dishes'}
-                            getFunctionName={sweetDishes}
-                            rupeeSymbol={rupeeSymbol}
-                        />
-                        <MenuItems
-                            category_name={'beverages'}
-                            title={'Beverages'}
-                            getFunctionName={beverages}
-                         rupeeSymbol={rupeeSymbol}
-                        />
+                        {/* Veg Starters */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='veg_starters'
+                        >
+                            Veg Starters
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {vegStarters.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Non Veg Starters */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='non_veg_starters'
+                        >
+                            Non Veg Starters
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {nonVegStarters.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Veg Platters */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='veg_platters'
+                        >
+                            Veg Platters
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {vegPlatters.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Non Veg Platters */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='non_veg_platters'
+                        >
+                            Non Veg Platters
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {nonVegPlatters.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Veg Main Course */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='veg_main_course'
+                        >
+                            Veg Main Course
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {vegMainCourse.map((item) => {
+                                const cartItem = cartItems.find((c) => c.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Non Veg Main Course */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='non_veg_main_course'
+                        >
+                            Non Veg Main Course
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {nonVegMainCourse.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Veg Biryani */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='veg_biryani'
+                        >
+                            Veg Biryani
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {vegBiryani.map((item) => {
+                                const cartItem = cartItems.find((ci)=> ci.item_id === item.item_id)
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Non Veg Biryani */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='non_veg_biryani'
+                        >
+                            Non Veg BIryani
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {nonVegBiryani.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Veg Rice */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='veg_rice'
+                        >
+                            Veg Rice
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {vegRice.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Non Veg Rice */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='non_veg_rice'
+                        >
+                            Non Veg Rice
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {nonVegRice.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Rotis and Breads */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='rotis_and_breads'
+                        >
+                            Rotis And Breads
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {rotisAndBreads.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Chaats */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='chaats'
+                        >
+                            Chaats
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {chaats.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Salads */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='salads'
+                        >
+                            Salads
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {salads.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Raitas */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='raitas'
+                        >
+                            Raitas
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {raitas.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Sweet Dishesh */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='sweet_dishes'
+                        >
+                            Sweet Dishes
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {sweetDishes.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
+                        {/* Beverages */}
+                        <h2
+                            className={`text-4xl font-semibold text-center ${playfair.className}`}
+                            id='beverages'
+                        >
+                            Beverages
+                        </h2>
+                        <hr />
+                        <div
+                            className="flex flex-wrap"
+                        >
+                            {beverages.map((item) => {
+                                const cartItem = cartItems.find((ci) => ci.item_id === item.item_id);
+                                return (
+                                    <div
+                                        className="w-1/4 p-2"
+                                        key={item.item_id}
+                                    >
+                                        <div
+                                            className="flex flex-row rounded-2xl shadow-md overflow-hidden"
+                                        >
+                                            <div
+                                                className="flex flex-col p-4 justify-between"
+                                            >
+                                                <h3
+                                                    className="text-lg font-semibold"
+                                                >
+                                                    {item.item_name}
+                                                </h3>
+                                                <p
+                                                    className="text-sm text-gray-500"
+                                                >
+                                                    {item.description}
+                                                </p>
+                                                <p
+                                                    className="text-base font-bold mt-2"
+                                                >
+                                                    {rupeeSymbol}{item.price}
+                                                </p>
+                                                <div
+                                                    className="flex items-center mt-2"
+                                                >
+                                                    <CartButton
+                                                        itemId={Number(item.item_id)}
+                                                        price={Number(item.price)}
+                                                        initialQuantity={cartItem?.quantity || 0}
+                                                        cartItemId={cartItem?.cart_item_id}
+                                                    />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                )
+                            })}
+                        </div>
+                        <hr />
+                        <hr />
+                        <br />
                     </Suspense>
                 </div>
             </div>

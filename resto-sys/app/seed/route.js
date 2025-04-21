@@ -19,19 +19,19 @@ import beverages from "../data/beverages";
 // async function seedUser() {
 //     try {
 //         await sql`
-//             CREATE TABLE IF NOT EXISTS users (
-//                 user_id SERIAL PRIMARY KEY,
-//                 first_name VARCHAR(50) NOT NULL,
-//                 last_name VARCHAR(60) NOT NULL,
-//                 email VARCHAR(100) UNIQUE NOT NULL,
-//                 mobile_no VARCHAR(10) UNIQUE NOT NULL,
-//                 password VARCHAR(100) NOT NULL,
-//                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//                 city VARCHAR(30),
-//                 state VARCHAR(30),
-//                 address VARCHAR(150)
-//             );
+            // CREATE TABLE IF NOT EXISTS users (
+            //     user_id SERIAL PRIMARY KEY,
+            //     first_name VARCHAR(50) NOT NULL,
+            //     last_name VARCHAR(60) NOT NULL,
+            //     email VARCHAR(100) UNIQUE NOT NULL,
+            //     mobile_no VARCHAR(10) UNIQUE NOT NULL,
+            //     password VARCHAR(100) NOT NULL,
+            //     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            //     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            //     city VARCHAR(30),
+            //     state VARCHAR(30),
+            //     address VARCHAR(150)
+            // );
 //         `;
 //         console.log(`✅ | users Table Created Successfully!`);
 //     } catch (err) {
@@ -74,11 +74,11 @@ import beverages from "../data/beverages";
 // async function seedCategory() {
 //     try {
 //         // await sql`
-//         //     CREATE TABLE IF NOT EXISTS category (
-//         //         category_id SERIAL PRIMARY KEY,
-//         //         name VARCHAR(50) NOT NULL,
-//         //         type VARCHAR(10)
-//         //     );
+            // CREATE TABLE IF NOT EXISTS category (
+            //     category_id SERIAL PRIMARY KEY,
+            //     name VARCHAR(50) NOT NULL,
+            //     type VARCHAR(10)
+            // );
 //         // `;
 //         // console.log(`✅ | category Table Created Successfully!`);
 
@@ -132,14 +132,14 @@ import beverages from "../data/beverages";
 // async function seedFoodItems() {
 //     try {
 //         await sql`
-//             CREATE TABLE IF NOT EXISTS food_items (
-//                 item_id SERIAL PRIMARY KEY,
-//                 category_id INTEGER NOT NULL REFERENCES category(category_id),
-//                 item_name VARCHAR(150) NOT NULL,
-//                 description TEXT NOT NULL,
-//                 price DECIMAL(6, 2) NOT NULL,
-//                 create_date DATE DEFAULT CURRENT_DATE
-//             );
+            // CREATE TABLE IF NOT EXISTS food_items (
+            //     item_id SERIAL PRIMARY KEY,
+            //     category_id INTEGER NOT NULL REFERENCES category(category_id),
+            //     item_name VARCHAR(150) NOT NULL,
+            //     description TEXT NOT NULL,
+            //     price DECIMAL(6, 2) NOT NULL,
+            //     create_date DATE DEFAULT CURRENT_DATE
+            // );
 //         `;
 //         console.log(`✅ | food_items Table Created Successfully!`);
 //     } catch (err) {
@@ -153,14 +153,68 @@ import beverages from "../data/beverages";
 //             CREATE TABLE IF NOT EXISTS orders (
 //                 order_id SERIAL PRIMARY KEY,
 //                 user_id INTEGER NOT NULL REFERENCES users(user_id),
-//                 item_id INTEGER NOT NULL REFERENCES food_items(item_id),
-//                 quantity INTEGER NOT NULL,
 //                 total_price DECIMAL(10, 2) NOT NULL,
+//                 delivery_address TEXT NOT NULL,
+//                 name TEXT NOT NULL,
+//                 phone TEXT NOT NULL,
+//                 status VARCHAR(50) DEFAULT 'pending',
+//                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//                 payment_id VARCHAR(100)                
 //             );
 //         `;
 //         console.log(`✅ | orders Table Created Successfully!`);
 //     } catch (err) {
 //         console.error('❌ | Error Creating orders Table:', err);
+//     }
+// }
+
+// async function seedOrderItems() {
+//     try {
+//         await sql`
+//             CREATE TABLE IF NOT EXISTS order_items (
+//                 order_item_id SERIAL PRIMARY KEY,
+//                 order_id INTEGER NOT NULL REFERENCES orders(order_id),
+//                 item_id INTEGER NOT NULL REFERENCES food_items(item_id),
+//                 quantity INTEGER NOT NULL,
+//                 price DECIMAL(6, 2) NOT NULL
+//             );
+//         `;
+//         console.log(`✅ | order_items Table Created Successfully!`);
+//     } catch (err) {
+//         console.error('❌ | Error Creating order_items Table:', err);
+//     }
+// }
+
+// async function seedCart() {
+//     try {
+//         await sql`
+//             CREATE TABLE IF NOT EXISTS cart (
+//                 cart_id SERIAL PRIMARY KEY,
+//                 user_id INTEGER NOT NULL REFERENCES users(user_id),
+//                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+//                 updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+//             );
+//         `;
+//         console.log(`✅ | cart Table Created Successfully!`);
+//     } catch (err) {
+//         console.error('❌ | Error Creating cart Table:', err);
+//     }
+// }
+
+// async function seedCartItems() {
+//     try {
+//         await sql`
+//             CREATE TABLE IF NOT EXISTS cart_items (
+//                 cart_item_id SERIAL PRIMARY KEY,
+//                 cart_id INTEGER NOT NULL REFERENCES cart(cart_id),
+//                 item_id INTEGER NOT NULL REFERENCES food_items(item_id),
+//                 quantity INTEGER NOT NULL DEFAULT 1,
+//                 added_price DECIMAL(6, 2) NOT NULL
+//             );
+//         `;
+//         console.log(`✅ | cart_items Table Created Successfully!`);
+//     } catch (err) {
+//         console.error('❌ | Error Creating cart_items Table:', err);
 //     }
 // }
 
@@ -586,7 +640,8 @@ import beverages from "../data/beverages";
 export async function GET() {
     try {
         const res = await sql.begin((sql) => [
-            seedCategory(),
+            seedOrders(),
+            seedOrderItems(),
         ]);
 
         return Response.json({ message: 'Database seeded successfully!' });

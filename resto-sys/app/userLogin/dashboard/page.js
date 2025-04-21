@@ -4,19 +4,26 @@ import NavBar from "../../utils/navbar";
 import SideBar from "../../utils/sidebar";
 import FooterComponent from "../../utils/footer";
 import CardComponent from "../../utils/card";
-import { useState } from "react";
 import SidebarToggle from "../../utils/sidebarToggle";
+import { useSession } from "next-auth/react";
 
 function UserDashboard() {
-    const [showSidebar, setShowSidebar] = useState(true);
+    const { data: session, status } = useSession();
 
-    return (
+    if (status === 'loading')
+        return <div>Loading...</div>;
+
+    if (status === 'authenticated')
+        return (
         <div
             className="flex flex-col min-h-screen"
         >
             <div className="mb-2"
             >
-                <NavBar />
+                <NavBar
+                    userName={session.user.name}
+                    userEmail={session.user.email}
+                />
             </div>
             <div
                 className="flex flex-grow flex-row px-2 relative"

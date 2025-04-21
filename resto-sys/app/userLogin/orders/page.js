@@ -1,5 +1,3 @@
-import Link from "next/link";
-import Image from "next/image";
 import NavBar from "../../utils/navbar";
 import SideBar from "../../utils/sidebar";
 import FooterComponent from "../../utils/footer";
