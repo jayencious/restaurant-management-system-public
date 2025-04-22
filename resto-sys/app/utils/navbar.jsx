@@ -59,7 +59,7 @@ function NavBar({
                     </DropdownHeader>
                     <DropdownDivider />
                     <DropdownItem
-                        onClick={() => signOut('credentials').then(() => window.location.href = '/userLogin')}
+                        onClick={() => signOut('credentials').then(() => window.location.href = '/')}
                     >
                         Log out
                     </DropdownItem>

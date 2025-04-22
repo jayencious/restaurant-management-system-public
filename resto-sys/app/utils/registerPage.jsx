@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
+// import { signIn } from "next-auth/react";
 import { useState } from "react";
 
 function RegisterPageComponent() {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [email, setEmail] = useState('');
-    const [mobileNumber, setMobileNumber] = useState('');
+    // const [mobileNumber, setMobileNumber] = useState('');
     const [password, setPassword] = useState('');
     const [creatingUser, setCreatingUser] = useState(false);
     const [userCreated, setUserCreated] = useState(false);
@@ -26,7 +26,7 @@ function RegisterPageComponent() {
                 firstName,
                 lastName,
                 email,
-                mobileNumber,
+                // mobileNumber,
                 password
             }),
             headers: { 'Content-Type': 'application/json' }
@@ -154,7 +154,7 @@ function RegisterPageComponent() {
                             onChange={(e) => setEmail(e.target.value)}
                             />
                     </div>
-                    <div>
+                    {/* <div>
                         <label
                             htmlFor="mobile_no"
                             className="block text-sm/6 font-medium text-gray-100"
@@ -173,7 +173,7 @@ function RegisterPageComponent() {
                             disabled={creatingUser}
                             onChange={(e) => setMobileNumber(e.target.value)}
                         />
-                    </div>
+                    </div> */}
                     <div>
                         <label
                             htmlFor="password"

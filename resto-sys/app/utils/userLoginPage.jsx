@@ -17,6 +17,7 @@ function UserLoginComponent() {
         const res = await signIn('credentials', {
             email: email,
             password: password,
+            role: 'user',
             redirect: true,
             callbackUrl: '/userLogin/dashboard',
         });
@@ -29,7 +30,7 @@ function UserLoginComponent() {
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <Image
                     src='/taste_of_the_world_logo.jpg'
-                    alt='Taste Of The Worl'
+                    alt='Taste Of The World'
                     width={85}
                     height={100}
                     className='mx-auto'
@@ -93,7 +94,7 @@ function UserLoginComponent() {
                             disabled={loginInProgress}
                             className="w-full px-4 py-2 font-semibold bg-blue-600 text-white text-lg rounded-md shadow-md hover:bg-indigo-500 focus:ring-2 focus:ring-indigo-600 focus:outline-none transition-all ease-in-out duration-300 mb-3"
                         >
-                            Sign In
+                            {loginInProgress ? 'Signing In...' : 'Sign In'}
                         </button>
                     </div>
                 </form>

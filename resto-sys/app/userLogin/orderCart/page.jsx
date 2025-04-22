@@ -35,6 +35,7 @@ async function CartPage() {
                 className="mb-2"
             >
                 <NavBar
+                    NavbarBrandPath={'/userLogin/dashboard'}
                     userName={userName}
                     userEmail={userEmail}
                 />
@@ -42,11 +43,25 @@ async function CartPage() {
             <div
                 className="flex flex-grow flex-row px-2 relative"
             >
-                <SidebarToggle />
+                <SidebarToggle
+                    SidebarLogoPath={'/userLogin/dashboard'}
+                    SidebarItemDashboard={'/userLogin/dashboard'}
+                    SidebarItemMenu={'/userLogin/menu'}
+                    SidebarItemOrders={'/userLogin/orders'}
+                    SidebarItemCart={'/userLogin/orderCart'}
+                    SidebarItemCheckout={'/userLogin/checkout'}
+                />
                 <div
                     className="hidden md:flex md:w-60 md:mr-2 bg-white z-20"
                 >
-                    <SideBar />
+                    <SideBar
+                        SidebarLogoPath={'/userLogin/dashboard'}
+                        SidebarItemDashboard={'/userLogin/dashboard'}
+                        SidebarItemMenu={'/userLogin/menu'}
+                        SidebarItemOrders={'/userLogin/orders'}
+                        SidebarItemCart={'/userLogin/orderCart'}
+                        SidebarItemCheckout={'/userLogin/checkout'}
+                    />
                 </div>
                 <div
                     className="flex-grow relative overflow-y-auto scrollbar-hide p-4"

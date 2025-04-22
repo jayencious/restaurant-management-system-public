@@ -1,11 +1,11 @@
 import NavBar from "../../utils/navbar";
-import SideBar from "../../utils/sidebar";
+import AdminSideBar from "../../utils/adminSidebar";
+import AdminSidebarToggle from "../../utils/adminSidebarToggle";
 import FooterComponent from "../../utils/footer";
 import CardComponent from "../../utils/card";
-import SidebarToggle from "../../utils/sidebarToggle";
 import { auth } from "../../auth";
 
-async function UserDashboard() {
+async function AdminDashboard() {
     const session = await auth();
 
     const userName = session?.user?.name;
@@ -15,7 +15,8 @@ async function UserDashboard() {
         <div
             className="flex flex-col min-h-screen"
         >
-            <div className="mb-2"
+            <div
+                className="mb-2"
             >
                 <NavBar
                     userName={userName}
@@ -25,11 +26,11 @@ async function UserDashboard() {
             <div
                 className="flex flex-grow flex-row px-2 relative"
             >
-                <SidebarToggle />
+                <AdminSidebarToggle />
                 <div
                     className="hidden md:flex md:w-60 md:mr-2 bg-white z-20"
                 >
-                    <SideBar />
+                    <AdminSideBar />
                 </div>
                 <div
                     className="flex-1 relative rounded-xl p-4 mt-4 md:mt-0"
@@ -38,11 +39,11 @@ async function UserDashboard() {
                         backgroundSize: "cover",
                         backgroundRepeat: "no-repeat",
                         backgroundPosition: "center",
-                        borderRadius: "10px"
+                        borderRadius: "10px",
                     }}
                 >
                     <div
-                        className="flex flex-wrap justify-center gap-6" //flex flex-col sm:flex-row flex-wrap justify-center items-center gap-6
+                        className="flex flex-wrap justify-center gap-6"
                     >
                         <div
                             className="w-[300px] h-[400px] flex justify-center items-center"
@@ -53,7 +54,7 @@ async function UserDashboard() {
                                 imgWidth={350}
                                 imgHeight={400}
                                 cardText={'Menu'}
-                                buttonPath={'/userLogin/menu'}
+                                buttonPath={'/adminLogin/menu'}
                             />
                         </div>
                         <div
@@ -65,21 +66,9 @@ async function UserDashboard() {
                                 imgWidth={350}
                                 imgHeight={450}
                                 cardText={'Orders'}
-                                buttonPath={'/userLogin/orders'}
+                                buttonPath={'/adminLogin/orders'}
                             />
                         </div>
-                        {/* <div
-                            className="w-[300px] h-[400px] flex justify-center items-center"
-                        >
-                            <CardComponent
-                                imgSrc={'/reservation.png'}
-                                imgAlt={'Table Reservation'}
-                                imgWidth={350}
-                                imgHeight={400}
-                                cardText={'Reserve Table'}
-                                buttonPath={'/userLogin/reservation'}
-                            />
-                        </div> */}
                     </div>
                 </div>
             </div>
@@ -89,7 +78,7 @@ async function UserDashboard() {
                 <FooterComponent />
             </div>
         </div>
-    )
+    );
 }
 
-export default UserDashboard;
+export default AdminDashboard;
