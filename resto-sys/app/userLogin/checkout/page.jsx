@@ -69,6 +69,28 @@ async function CheckoutPage() {
     const cartItems = await getCartItems();
     const totalPrice = cartItems.reduce((sum, item) => sum + item.added_price * item.quantity, 0);
 
+    // const handleFormSubmit = async (formData) => {
+    //     "use client";
+
+    //     try {
+    //         const res = await fetch('/api/phonepe/create', {
+    //             method: "POST",
+    //             headers: { "Content-Type": "application/json" },
+    //             body: JSON.stringify({ formData }),
+    //         });
+    //         const data = await res.json();
+
+    //         if (data.error) {
+    //             throw new Error(data.error);
+    //         }
+
+    //         window.location.href = data.redirectUrl;
+    //     } catch (err) {
+    //         console.error('Payment initiation failed:', err);
+    //         throw err;
+    //     }
+    // };
+
     return (
         <div
             className="flex flex-col min-h-screen"

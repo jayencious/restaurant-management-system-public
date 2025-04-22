@@ -56,82 +56,82 @@ function SideBar() {
                     >
                         <div className="max-h-[150px] overflow-y-auto pr-2 scrollbar-hide">
                             <SidebarItem
-                                href="#veg_starters"
+                                href="/userLogin/menu#veg_starters"
                             >
                                 Veg Starters
                             </SidebarItem>
                             <SidebarItem
-                                href="#non_veg_starters"
+                                href="/userLogin/menu#non_veg_starters"
                             >
                                 Non Veg Starters
                             </SidebarItem>
                             <SidebarItem
-                                href="#veg_platters"
+                                href="/userLogin/menu#veg_platters"
                             >
                                 Veg Platters
                             </SidebarItem>
                             <SidebarItem
-                                href="#non_veg_platters"
+                                href="/userLogin/menu#non_veg_platters"
                             >
                                 Non Veg Platters
                             </SidebarItem>
                             <SidebarItem
-                                href="#veg_main_course"
+                                href="/userLogin/menu#veg_main_course"
                             >
                                 Veg Main Course
                             </SidebarItem>
                             <SidebarItem
-                                href="#non_veg_main_course"
+                                href="/userLogin/menu#non_veg_main_course"
                             >
                                 Non Veg Main Course
                             </SidebarItem>
                             <SidebarItem
-                                href="#veg_biryani"
+                                href="/userLogin/menu#veg_biryani"
                             >
                                 Veg Biryani
                             </SidebarItem>
                             <SidebarItem
-                                href="#non_veg_biryani"
+                                href="/userLogin/menu#non_veg_biryani"
                             >
                                 Non Veg Biryani
                             </SidebarItem>
                             <SidebarItem
-                                href="#veg_rice"
+                                href="/userLogin/menu#veg_rice"
                             >
                                 Veg Rice
                             </SidebarItem>
                             <SidebarItem
-                                href="#non_veg_rice"
+                                href="/userLogin/menu#non_veg_rice"
                             >
                                 Non Veg Rice
                             </SidebarItem>
                             <SidebarItem
-                                href="#rotis_and_breads"
+                                href="/userLogin/menu#rotis_and_breads"
                             >
                                 Rotis and Breads
                             </SidebarItem>
                             <SidebarItem
-                                href="#chaats"
+                                href="/userLogin/menu#chaats"
                             >
                                 Chaats
                             </SidebarItem>
                             <SidebarItem
-                                href="#salads"
+                                href="/userLogin/menu#salads"
                             >
                                 Salads
                             </SidebarItem>
                             <SidebarItem
-                                href="#raitas"
+                                href="/userLogin/menu#raitas"
                             >
                                 Raitas
                             </SidebarItem>
                             <SidebarItem
-                                href="#sweet_dishes"
+                                href="/userLogin/menu#sweet_dishes"
                             >
                                 Sweet Dishes
                             </SidebarItem>
                             <SidebarItem
-                                href="#beverages"
+                                href="/userLogin/menu#beverages"
                             >
                                 Beverages
                             </SidebarItem>
@@ -166,7 +166,7 @@ function SideBar() {
                         121-006-548
                     </SidebarItem>
                     <SidebarItem
-                        href="/user/checkout"
+                        href="/userLogin/checkout"
                         icon={IoBagCheckOutline}
                     >
                         Place Order

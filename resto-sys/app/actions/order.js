@@ -62,11 +62,19 @@ async function createOrder({
             WHERE user_id = ${session.user.id}
         `;
 
-        if (cart) {
-            await sql`
+        if (!cart?.cart_id) {
+            console.warn('No cart found for user:', session.user.id);
+        } else {
+            const deleteResult = await sql`
                 DELETE FROM cart_items
                 WHERE cart_id = ${cart.cart_id}
+                RETURNING cart_item_id;
             `;
+            console.log('Cart cleaned:', {
+                userId: session.user.id,
+                cartId: cart.cart_id,
+                deletedItems: deleteResult.length,
+            });
         }
 
         await sql`COMMIT`;
@@ -76,8 +84,12 @@ async function createOrder({
         return { success: true, orderId: order.order_id };
     } catch (err) {
         await sql`ROLLBACK`;
-        console.error('Error creating order:', err);
-        throw new Error('Failed to create order');
+        console.error('Error creating order:', {
+            message: err.message,
+            userId: session?.user?.id,
+            paymentId,
+        });
+        throw new Error('Failed to create order:');
     }
 }
 

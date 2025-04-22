@@ -23,7 +23,8 @@ function DeliveryForm({
         const { name, phone, address } = formData;
         const trimmedName = name.trim();
         const trimmedAddress = address.trim();
-        const isPhoneValid = phone.match(/^\d{10}$/);
+        const sanitizedPhone = phone.replace(/\D/g, "");
+        const isPhoneValid = sanitizedPhone.length === 10;
 
         const newErrors = {
             name: trimmedName ? "" : "Name is required",
@@ -42,8 +43,9 @@ function DeliveryForm({
 
     const handleChange = (e) => {
         const { name, value } = e.target;
+        const sanitizedValue = name === "phone" ? value.replace(/\D/g, "").slice(0, 10) : value;
         setFormData((prev) => {
-            const newFormData = { ...prev, [name]: value };
+            const newFormData = { ...prev, [name]: sanitizedValue };
             console.log('Updated Form Data:', newFormData);
             return newFormData;
         });
@@ -68,7 +70,7 @@ function DeliveryForm({
                     throw new Error(data.error);
                 }
 
-                window.location.href = data.url;
+                window.location.href = data.redirectUrl;
             } catch (err) {
                 console.error('Payment initiation failed:', err);
                 alert('Failed to initiate payment');
