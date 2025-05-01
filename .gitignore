@@ -30,9 +30,6 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# env files (can opt-in for committing if needed)
-.env*
-
 # vercel
 .vercel
 
@@ -42,5 +39,3 @@ next-env.d.ts
 
 .vercel
 .package-lock.json
-
-.node_modules
