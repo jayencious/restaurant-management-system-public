@@ -1,6 +1,6 @@
 # 🚨READ THIS CAREFULLY!! 🚨
 
-* This project is developed by "jayencious".
+* This is an open-source project developed by "jayencious".
 * This project is for education purposes, which can be used for learning.
 * If anyone wants to use this project, or copy any part or chunks of this project, for *MERIT*, then the credit needs to be given to the owner and developer of this project, i.e., **jayencious**
 * The project titled as "Restaurant Management System", is a [Next.js](https://nextjs.org) project, which includes the utilization of React, Tailwind CSS, PostgreSQL and NodeJS.
